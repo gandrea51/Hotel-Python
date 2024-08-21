@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Reset Phone{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/phone.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="reset-phone-container">
+    <div class="reset-phone-card">
+        <div class="reset-phone-header">Ripristina il numero di Telefono</div>
+        <div class="card-body">
+            <form method="post" action="/phone">
+                <div class="mb-3">
+                    <label for="new" class="form-label">Phone number</label>
+                    <input id="phone" type="text" class="form-control" name="new" required>
+                </div>
+                <div class="mb-0">
+                    <input type="submit" class="btn btn-primary" value="Aggiorna">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

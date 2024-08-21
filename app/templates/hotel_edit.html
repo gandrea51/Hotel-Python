@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}Modifica {{ hotel.name }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hotel_edit.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Titolo della pagina -->
+    <div class="row mb-4 text-center">
+        <div class="col-md-12">
+            <h1 class="display-4">Modifica Hotel: {{hotel.name}}</h1>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Modulo di Modifica -->
+    <form action="{{ url_for('main.hotel_edit', id = hotel.id) }}" method="POST">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="titolo">Name</label>
+                    <input required id="name" class="form-control" name="name" type="text" value="{{hotel.name}}">
+                    <small class="form-text">Hotel's Name</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input required id="address" class="form-control" name="address" type="text" value="{{hotel.address}}">
+                    <small class="form-text">Hotel's Address</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="room">Room</label>
+            <input required id="room" class="form-control" name="room" type="number" min="5" value="{{hotel.room}}">
+            <small class="form-text">Hotel's Room</small>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" name="description" rows="4">{{hotel.description}}</textarea>
+            <small class="form-text">Hotel's Description</small>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="star">Star</label>
+            <input required id="star" class="form-control" name="star" type="number" min="1" max="5" value="{{hotel.star}}">
+            <small class="form-text">Hotel's Star</small>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-warning">Modifica Hotel</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

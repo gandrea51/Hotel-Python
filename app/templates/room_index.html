@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block title %}Camere{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/room_index.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">Esplora le Nostre Camere</h1>
+            <p class="lead">Scopri le opzioni disponibili e trova l'hotel perfetto per la tua prossima vacanza. Naviga tra i dettagli 
+                degli hotel e aggiungi il tuo se sei un amministratore.</p>
+        </div>
+        
+        <div class="row text-center mb-5">
+            <div class="col-md-12">
+                {% if current_user.role != 'Client' %}
+                    <div class="mt-3">
+                        <a href="/room/create" class="btn btn-custom">Aggiungi una Nuova Camera</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+
+        <section class="services-section my-5">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                {% for room in rooms %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {% if loop.first %}active{% endif %}" id="room-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#room-{{ loop.index }}" type="button" role="tab" aria-controls="room-{{ loop.index }}" aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+                            <i class="fa fa-bed"></i> {{ room.type }}
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        
+            <div class="tab-content" id="myTabContent">
+                {% for room in rooms %}
+                    <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="room-{{ loop.index }}" role="tabpanel" aria-labelledby="room-tab-{{ loop.index }}">
+                        {% if room.id == 1 %}
+                        <div class="row justify-content-center text-center">
+                            <img src="{{ url_for('static', filename='images/camera_uno.jpg') }}" alt="Room 1 Image" class="tab-image">
+                        </div>
+                        {% elif room.id == 2 %}
+                        <div class="row justify-content-center text-center">
+                            <div id="carouselExample" class="carousel slide" style="width: 50%;">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{{ url_for('static', filename='images/camera_due.jpg') }}" class="d-block w-100 tab-image" alt="Room 2 Image">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ url_for('static', filename='images/camera_quattro.jpg') }}" class="d-block w-100 tab-image" alt="Room 3 Image">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                              </div>
+                        </div>
+                        {% else %}
+                        <div class="row justify-content-center text-center">
+                            <img src="{{ url_for('static', filename='images/camera_tre.jpg') }}" alt="Room 4 Image Image" class="tab-image">
+                        </div>
+                        {% endif %}
+                        <div class="row justify-content-center text-center">
+                            <div class="col-lg-8">
+                                <p style="text-align: center;">
+
+                                </p>
+                            </div>
+                        </div>
+                        {% if current_user.role != "Client" %}
+                        <div class="row justify-content-end mb-3">
+                            <div class="col-lg-8 text-end">
+                                <a href="{{ url_for('main.room_edit', id = room.id) }}" class="btn btn-warning me-2">Modifica</a>
+                                <form action="{{ url_for('main.room_delete', id = room.id) }}" method="POST" class="d-inline">
+                                    <input type="submit" class="btn btn-danger" value="Elimina">
+                                </form>
+                            </div>
+                        </div>   
+                        {% endif %}                     
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}

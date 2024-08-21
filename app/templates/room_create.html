@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Aggiungi una Camera{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hotel_create.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Titolo della pagina -->
+    <div class="row mb-4 text-center">
+        <div class="col-md-12">
+            <h1 class="display-4">Aggiungi una Nuova Camera</h1>
+        </div>
+    </div>
+    <hr>
+
+    <form action="/room/create" method="POST" class="custom-form">
+
+        <div class="form-group mb-4">
+            <label for="type">Type</label>
+            <input required id="type" class="form-control" name="type" type="text" placeholder="Inserisci la tipologia di camera">
+            <small class="form-text">Hotel's Room</small>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Aggiungi Camera</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

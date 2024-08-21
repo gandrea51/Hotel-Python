@@ -1,0 +1,108 @@
+body {
+    background-color: #f0f8ff;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+header {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+header img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: #ffcc00;
+}
+.btn-custom {
+    border-radius: 25px;
+    padding: 15px 30px;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 1.25rem;
+    transition: background-color 0.3s;
+}
+.btn-custom:hover {
+    background-color: #e55b50;
+}
+.btn-top {
+    position: fixed;
+    z-index: 1000;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.btnTop.show {
+    display: flex;
+}
+.btnTop:hover {
+    background-color: #555;
+    transition:  background-color 0.3s ease;
+}
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ffcc00;
+    border-radius: 10px;
+}
+.card-title {
+    color: #3498db;
+    font-weight: bold;
+}
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+.social-media a {
+    color: #ff6f61;
+    font-size: 2rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+.social-media a:hover {
+    color: #ffcc00;
+}
+footer {
+    background-color: #2c3e50;
+    color: #ffcc00;
+    padding: 20px;
+    text-align: center;
+}
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+.container {
+    padding: 60px 0;
+}
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    .btn-custom {
+        width: 100%;
+        font-size: 1rem;
+    }
+    .card {
+        width: 100%;
+    }
+    .container {
+        padding: 30px 15px;
+    }
+}

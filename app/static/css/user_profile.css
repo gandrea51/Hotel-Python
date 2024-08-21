@@ -1,0 +1,54 @@
+.alert-custom {
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+.alert-custom.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.alert-custom.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.prestito-item, .prenotazione-item {
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+.prestito-item:hover, .prenotazione-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.btn-outline-dark, .btn-primary {
+    margin-top: 0.5rem;
+}
+.card-body ul.list-group {
+    padding: 0;
+}
+.card-body ul.list-group .list-group-item {
+    padding: 1rem;
+    border: none;
+}
+.card-body h5.card-title {
+    margin-bottom: 1rem;
+}
+.btn-info-custom {
+    background-color: #17a2b8;
+    color: white;
+}
+.btn-info-custom:hover {
+    background-color: #138496;
+    color: white;
+}
+.animated-fade {
+    animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.alert-info-custom {
+    background-color: rgba(135, 217, 229, 0.3); /* blu chiaro con opacità del 30% */
+    color: #0f5661; /* Colore del testo */
+    border: 1px solid rgba(23, 162, 184, 0.5); /* Colore del bordo con opacità */
+}

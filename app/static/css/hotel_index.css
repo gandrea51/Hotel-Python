@@ -1,0 +1,137 @@
+.card {
+    border-radius: 10px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card-title {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+.card-text {
+    color: #6c757d;
+}
+.nav-tabs .nav-link {
+    color: #3498db;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px 5px 0 0;
+}
+
+.nav-tabs .nav-link i {
+    margin-right: 8px;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #ffcc00;
+    color: #2c3e50;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #ff6f61;
+    color: white;
+    border-color: #ffcc00;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #ffcc00;
+    border-top: none;
+    border-radius: 0 5px 5px 5px;
+    background-color: #ffffff;
+    color: #555;
+    font-size: 1rem;
+}
+.tab-image {
+    width: 50%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2c3e50;
+    text-align: justify;
+}
+
+.tab-pane {
+    padding: 20px;
+}
+/* Stile per il titolo e la descrizione */
+.text-center h1 {
+    color: #333;
+    font-weight: bold;
+}
+
+.text-center p.lead {
+    color: #555;
+    font-size: 1.25rem;
+    margin-top: 10px;
+}
+
+/* Pulsante personalizzato */
+.btn-custom {
+    border-radius: 25px;
+    padding: 15px 30px;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 1.25rem;
+    transition: background-color 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #e55b50;
+}
+
+/* Messaggio per utenti non autenticati */
+.text-muted {
+    font-size: 1rem;
+    color: #777;
+}
+.text-end {
+    text-align: right;
+}
+
+.btn {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.me-2 {
+    margin-right: 0.5rem;
+}
+
+.d-inline {
+    display: inline;
+}

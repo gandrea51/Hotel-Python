@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block title %}Hotel{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hotel_index.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">Esplora i Nostri Hotel</h1>
+            <p class="lead">Scopri le opzioni disponibili e trova l'hotel perfetto per la tua prossima vacanza. Naviga tra i dettagli 
+                degli hotel e aggiungi il tuo se sei un amministratore.</p>
+        </div>
+        
+        <div class="row text-center mb-5">
+            <div class="col-md-12">
+                {% if current_user.role != 'Client' %}
+                    <div class="mt-3">
+                        <a href="/hotel/create" class="btn btn-custom">Aggiungi un Nuovo Hotel</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+
+        <section class="services-section my-5">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                {% for hotel in hotels %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {% if loop.first %}active{% endif %}" id="hotel-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#hotel-{{ loop.index }}" type="button" role="tab" aria-controls="hotel-{{ loop.index }}" aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+                            <i class="fa fa-building"></i> {{ hotel.name }}
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        
+            <div class="tab-content" id="myTabContent">
+                {% for hotel in hotels %}
+                    <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="hotel-{{ loop.index }}" role="tabpanel" aria-labelledby="hotel-tab-{{ loop.index }}">
+                        {% if hotel.id == 1 %}
+                        <div class="row justify-content-center text-center">
+                            <img src="{{ url_for('static', filename='images/hotel_uno.jpg') }}" alt="Hotel Image" class="tab-image">
+                        </div>
+                        {% elif hotel.id == 2 %}
+                        <div class="row justify-content-center text-center">
+                            <img src="{{ url_for('static', filename='images/hotel_due.jpg') }}" alt="Hotel Image" class="tab-image" style="width: 70%;">
+                        </div>
+                        {% else %}
+                        <div class="row justify-content-center text-center">
+                            <img src="{{ url_for('static', filename='images/hotel_tre.jpg') }}" alt="Hotel Image" class="tab-image">
+                        </div>
+                        {% endif %}
+                        <div class="row justify-content-center text-center">
+                            <div class="col-lg-8">
+                                <p style="text-align: center;">
+                                    <strong><i class="fa fa-map-marker"></i> Address: </strong> {{hotel.address}}<br><br>
+                                    <strong><i class="fa fa-star"></i> Star: </strong> {{hotel.star}}<br><br>
+                                    <strong><i class="fa fa-bed"></i> Room: </strong> {{hotel.room}}<br><br>
+                                    <strong><i class="fa fa-cogs"></i> Description: </strong> {{hotel.description}}
+                                </p>
+                            </div>
+                        </div>
+                        {% if current_user.role != "Client" %}
+                        <div class="row justify-content-end mb-3">
+                            <div class="col-lg-8 text-end">
+                                <a href="{{ url_for('main.hotel_edit', id=hotel.id) }}" class="btn btn-warning me-2">Modifica</a>
+                                <form action="{{ url_for('main.hotel_delete', id=hotel.id) }}" method="POST" class="d-inline">
+                                    <input type="submit" class="btn btn-danger" value="Elimina">
+                                </form>
+                            </div>
+                        </div>   
+                        {% endif %}                     
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}

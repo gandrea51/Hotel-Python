@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>L'Oasi del Mare</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/welcome.css')}}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/hotel.png') }}">
+    </head>
+    <body>
+        <header class="animated fadeIn">
+            <img src="{{url_for('static', filename='images/hotel.jpg')}}" class="img-fluid" alt="Oasi del Mare">
+            <h1>Oasi del Mare</h1>
+        </header>
+
+        <div class="container">
+            <div class="row text-center mt-5">
+                <div class="col-12 col-md-4 d-flex justify-content-center mb-3 animated fadeIn">
+                    <a href="/login" class="btn btn-custom">
+                        <i class="fa fa-sign-in"></i> Login
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center mb-3 animated fadeIn">
+                    <a href="/home" class="btn btn-custom">
+                        <i class="fa fa-house"></i> Home page
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center mb-3 animated fadeIn">
+                    <a href="/register" class="btn btn-custom">
+                        <i class="fa fa-solid fa-user-plus"></i> Registrati
+                    </a>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="chi-siamo-tab" data-bs-toggle="tab" data-bs-target="#chi-siamo" type="button" role="tab" aria-controls="chi-siamo" aria-selected="true">
+                            <i class="fa fa-solid fa-info"></i> Chi Siamo
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="camere-tab" data-bs-toggle="tab" data-bs-target="#camere" type="button" role="tab" aria-controls="camere" aria-selected="false">
+                            <i class="fa fa-solid fa-bed"></i> Le nostre camere
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="registrati-tab" data-bs-toggle="tab" data-bs-target="#registrati" type="button" role="tab" aria-controls="registrati" aria-selected="false">
+                            <i class="fa fa-user-plus"></i> Registrati
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="chi-siamo" role="tabpanel" aria-labelledby="chi-siamo-tab">
+                        <div class="d-flex flex-column align-items-center text-center p-4">
+                            <img src="{{url_for('static', filename='images/hotello.jpg')}}" class="img-fluid mb-4" alt="Chi Siamo" style="max-width: 300px;">
+                            <h5 class="tab-title">Chi Siamo</h5>
+                            <p class="tab-text">Benvenuti all'Oasi del Mare, il vostro rifugio di tranquillità e lusso sulla costa. Offriamo un'esperienza indimenticabile, con viste mozzafiato sull'oceano e un servizio impeccabile in un ambiente rilassante e raffinato.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="camere" role="tabpanel" aria-labelledby="camere-tab">
+                        <div class="d-flex flex-column align-items-center text-center p-4">
+                            <img src="{{url_for('static', filename='images/camera.jpg')}}" class="img-fluid mb-4" alt="Le nostre camere" style="max-width: 300px;">
+                            <h5 class="tab-title">Le nostre camere</h5>
+                            <p class="tab-text">Le camere dell'Oasi del Mare sono un perfetto mix di comfort e stile. Scegli tra le nostre eleganti suite con vista mare o le accoglienti stanze familiari, tutte progettate per offrirvi il massimo relax durante il vostro soggiorno.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="registrati" role="tabpanel" aria-labelledby="registrati-tab">
+                        <div class="d-flex flex-column align-items-center text-center p-4">
+                            <img src="{{url_for('static', filename='images/login.jpg')}}" class="img-fluid mb-4" alt="Registrati" style="max-width: 300px;">
+                            <h5 class="tab-title">Registrati</h5>
+                            <p class="tab-text">Entra a far parte della nostra esclusiva community e scopri tutte le offerte speciali riservate ai nostri ospiti. Registrandoti, riceverai aggiornamenti in anteprima e potrai prenotare la tua prossima fuga all'Oasi del Mare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+            <div class="row mt-5">
+                <button onclick="topFunction()" id="btnTop" title="Go to top" class="btn btn-dark btn-top">
+                    <i class="fa fa-arrow-up"></i> Top
+                </button>
+            </div>
+        </div>
+
+        <footer class="animated fadeIn">
+            <hr class="bg-light">
+            <p>© 2024. Oasi del Mare. Tutti i diritti riservati.</p>
+            <div class="social-media">
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-facebook"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-twitter"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-linkedin"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-instagram"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-youtube"></i></a>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            window.onscroll = function() 
+            {
+                scrollFunction()
+            };
+            function scrollFunction() 
+            {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) 
+                {
+                    document.getElementById('btnTop').style.display = 'block';   
+                }
+                else
+                {
+                    document.getElementById('btnTop').style.display = 'none';
+                }
+            }
+            function topFunction() 
+            {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+    </body>
+</html>

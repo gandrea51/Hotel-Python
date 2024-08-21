@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>L'Oasi del Mare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">   
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/hotel.png') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="animated fadeIn">
+            <img src="{{url_for('static', filename='images/hotel.jpg')}}" class="img-fluid" alt="Oasi del Mare">
+            <h1>Oasi del Mare</h1>
+        </header>
+
+        <!-- User Welcome Message -->
+        <section class="text-center animated fadeIn slower my-5">
+            <h2 class="display-4">Benvenuto nella tua Oasi, {{ user.name }}!</h2>
+            <p class="lead">Siamo felici di averti qui. Ecco le informazioni relative al tuo profilo:</p>
+            <div class="profile-info">
+                <p><strong>Ruolo:</strong> {{ user.role }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <a href="" class="btn btn-custom"><i class="fa fa-envelope"></i> Richiedi contatto</a>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="services-section my-5">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="hotel-tab" data-bs-toggle="tab" data-bs-target="#hotel" type="button" role="tab" aria-controls="hotel" aria-selected="true">
+                        <i class="fa fa-building"></i> Hotel
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="servizi-tab" data-bs-toggle="tab" data-bs-target="#servizi" type="button" role="tab" aria-controls="servizi" aria-selected="false">
+                        <i class="fa fa-cogs"></i> Servizi
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="room-tab" data-bs-toggle="tab" data-bs-target="#room" type="button" role="tab" aria-controls="room" aria-selected="false">
+                        <i class="fa fa-bed"></i> Room
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button" role="tab" aria-controls="booking" aria-selected="false">
+                        <i class="fa fa-calendar-check-o"></i> Booking
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab" aria-controls="user" aria-selected="false">
+                        <i class="fa fa-user"></i> My Profile
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+                    <img src="{{url_for('static', filename='images/hotello.jpg')}}" alt="Hotel Image" class="tab-image">
+                    <p>L'Oasi del Mare è un incantevole rifugio situato sulla costa, perfetto per chi cerca una vacanza rilassante e rigenerante. Il nostro hotel offre camere eleganti, un servizio 
+                        impeccabile, e una vista mozzafiato sul mare. Con noi, potrai godere di un'esperienza unica, immerso nel comfort e nel lusso.</p>                        
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8"><a class="btn btn-custom" href="/hotel"><i class="fa fa-building"></i> Hotel</a></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="servizi" role="tabpanel" aria-labelledby="servizi-tab">
+                    <img src="{{url_for('static', filename='images/bar.jpg')}}" alt="Services Image" class="tab-image">
+                    <p>I nostri servizi includono un centro benessere di alto livello, una piscina panoramica, ristoranti gourmet, e un servizio di concierge attento e professionale. Qualunque sia 
+                        la tua esigenza, siamo qui per soddisfarla e rendere il tuo soggiorno indimenticabile.</p>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8"><a class="btn btn-custom" href="/service"><i class="fa fa-cogs"></i> Servizi</a></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="room" role="tabpanel" aria-labelledby="room-tab">
+                    <img src="{{url_for('static', filename='images/camera.jpg')}}" alt="Room Image" class="tab-image">
+                    <p>Le nostre camere sono state progettate per offrire il massimo del comfort e del relax. Ogni stanza è dotata di arredi moderni, biancheria di lusso, e tutte le comodità necessarie 
+                        per sentirsi a casa. Svegliarsi con la vista del mare è un'esperienza che non dimenticherai.</p>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8"><a class="btn btn-custom" href="/room"><i class="fa fa-bed"></i> Room</a></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
+                    <img src="{{url_for('static', filename='images/ingresso.jpg')}}" alt="Booking Image" class="tab-image">
+                    <p>Prenotare il tuo soggiorno all'Oasi del Mare è facile e veloce. Utilizza il nostro sistema di prenotazione online per scegliere la tua camera ideale e personalizzare il tuo pacchetto 
+                        di soggiorno. Il nostro staff è sempre disponibile per assisterti in ogni fase della prenotazione.</p>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8"><a class="btn btn-custom" href="/booking"><i class="fa fa-calendar-check-o"></i> Booking</a></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+                    <img src="{{url_for('static', filename='images/camera_quattro.jpg')}}" alt="User Profile Image" class="tab-image">
+                    <p>Benvenuto nella tua area riservata. Qui puoi gestire il tuo profilo, rivedere le tue prenotazioni passate, e accedere a offerte esclusive riservate ai nostri ospiti. 
+                        Personalizza la tua esperienza per rendere ogni soggiorno presso di noi ancora più speciale.</p>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8"><a class="btn btn-custom" href="{{ url_for('main.user_profile', id = current_user.id) }}"><i class="fa fa-users"></i> My Profile</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logout -->
+        <section class="logout-section text-center animated fadeIn slower my-5">
+            <p class="footer">Se hai finito di esplorare per oggi, puoi fare il <a href="/logout">logout</a>.</p>
+        </section>     
+
+        <!-- Footer -->
+        <footer class="animated fadeIn">
+            <hr class="bg-light">
+            <p>© 2024. Oasi del Mare. Tutti i diritti riservati.</p>
+            <div class="social-media">
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-facebook"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-twitter"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-linkedin"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-instagram"></i></a>
+                <a href="" target="_blank" class="social-icon"><i class="fa fa-youtube"></i></a>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    </div>
+</body>
+</html>

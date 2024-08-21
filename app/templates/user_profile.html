@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}Profilo Utente{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+
+        <!-- Header Section -->
+        <div class="row text-center mb-4">
+            <div class="col-md-12">
+                <h1 class="display-4">Profilo di {{ user.name }}</h1>
+            </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Dettagli Account</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Name:</strong> {{ user.name }}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{ user.email }} 
+                        <a href="/email" class="btn btn-outline-dark">Cambia email</a>
+                    </li>
+                    <li class="list-group-item"><strong>Phone:</strong> {{ user.phone }} 
+                        <a href="/phone" class="btn btn-outline-dark">Cambia telefono</a>
+                    </li>
+                    <li class="list-group-item"><strong>Role:</strong> {{ user.role }}</li>
+                    <li class="list-group-item"><a href="/password" class="btn btn-outline-dark">Cambia password</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row text-center mb-4 animated-fade">
+            <div class="col-md-12">
+                <h5 class="display-6">Booking</h5>
+            </div>
+        </div>
+
+        {% if msg %}
+            <div class="alert alert-info alert-info-custom alert-custom animated-fade" role="alert">
+                <p>{{ msg|safe }}</p>
+                <a  href="/hotel" class="btn btn-info-custom">Prenota ora</a>
+            </div>
+        {% endif %}
+
+        {% if books %}
+            <div class="list-group">
+                {% for book in books %}
+                    <div class="list-group-item prenotazione-item animated-fade">
+                        <h5 class="mb-1">{{ book.hotel.name }}</h5>
+                        <h5 class="mb-1">{{ book.room.type }}</h5>
+                        <p class="mb-1">Stato: {{ book.state }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

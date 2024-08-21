@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Modifica {{ room.type }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hotel_edit.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Titolo della pagina -->
+    <div class="row mb-4 text-center">
+        <div class="col-md-12">
+            <h1 class="display-4">Modifica Camera: {{room.type}}</h1>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Modulo di Modifica -->
+    <form action="{{ url_for('main.room_edit', id = room.id) }}" method="POST">
+
+        <div class="form-group mb-4">
+            <label for="type">Type</label>
+            <input required id="type" class="form-control" name="type" type="text" value="{{room.type}}">
+            <small class="form-text">Hotel's Room</small>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-warning">Modifica Hotel</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
