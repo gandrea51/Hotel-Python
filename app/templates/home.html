@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">   
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/hotel.png') }}">
@@ -13,21 +14,72 @@
 <body>
     <div class="container">
         <header class="animated fadeIn">
-            <img src="{{url_for('static', filename='images/hotel.jpg')}}" class="img-fluid" alt="Oasi del Mare">
+            <img src="{{ url_for('static', filename='images/hotel.jpg') }}" class="img-fluid" alt="Oasi del Mare">
             <h1>Oasi del Mare</h1>
         </header>
-
+    
         <!-- User Welcome Message -->
         <section class="text-center animated fadeIn slower my-5">
             <h2 class="display-4">Benvenuto nella tua Oasi, {{ user.name }}!</h2>
-            <p class="lead">Siamo felici di averti qui. Ecco le informazioni relative al tuo profilo:</p>
-            <div class="profile-info">
-                <p><strong>Ruolo:</strong> {{ user.role }}</p>
-                <p><strong>Email:</strong> {{ user.email }}</p>
-                <a href="" class="btn btn-custom"><i class="fa fa-envelope"></i> Richiedi contatto</a>
+            <p class="lead">Esplora tutte le meraviglie che abbiamo da offrire. La tua avventura a Tristan da Cunha inizia qui!</p>
+            <div class="local-attractions">
+                <h3 class="mb-4">Scopri le Attrazioni Locali</h3>
+                <p>Il nostro hotel, situato a Tristan da Cunha, è in una posizione privilegiata, circondato da paesaggi mozzafiato e attrazioni locali uniche. 
+                Sia che tu voglia rilassarti sulla spiaggia o esplorare i tesori culturali nelle vicinanze, siamo qui per guidarti.</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-sun"></i> Spiaggia Privata</li>
+                    <li><i class="fa fa-utensils"></i> Ristoranti Gourmet</li>
+                    <li><i class="fa fa-spa"></i> Centro Benessere</li>
+                    <li><i class="fa fa-ship"></i> Escursioni in Barca</li>
+                </ul>
+                <h4 class="mt-5">Link utili:</h4>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.google.com/maps/place/Tristan+da+Cunha/@-37.11613,-12.3251756,13z/data=!3m1!4b1!4m6!3m5!1s0x25a3b1a1af6dc9b:0x69ee2d95dc98aedb!8m2!3d-37.1052489!4d-12.2776838!16zL20vMDdxNDg?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyMC4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="social-icon"><i class="fa fa-map-marker"></i> Tristan da Cunha su Google Maps</a></li>
+                    <li><a href="https://www.tristandc.com/" target="_blank" class="social-icon"><i class="fa fa-info-circle"></i> Scopri Tristan da Cunha</a></li>
+                </ul>
             </div>
         </section>
 
+        <section class="text-center animated fadeIn slower my-5">
+            <h2 class="display-4">Come Arrivare a Tristan da Cunha</h2>
+            <p class="lead">Scopri come raggiungere il nostro hotel a Tristan da Cunha con i diversi mezzi di trasporto disponibili. Scegli la tua opzione e pianifica il tuo viaggio con facilità!</p>
+        
+            <ul class="nav nav-tabs justify-content-center" id="transportTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="flight-tab" data-bs-toggle="tab" data-bs-target="#flight" type="button" role="tab" aria-controls="flight" aria-selected="true">
+                        <i class="fa fa-plane"></i> Volo
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ship-tab" data-bs-toggle="tab" data-bs-target="#ship" type="button" role="tab" aria-controls="ship" aria-selected="false">
+                        <i class="fa fa-ship"></i> Nave
+                    </button>
+                </li>
+            </ul>
+        
+            <div class="tab-content mt-4" id="transportTabContent">
+                <!-- Volo Tab -->
+                <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8">
+                            <h3>Arrivare con il Volo</h3>
+                            <p>Non esistono voli diretti per Tristan da Cunha. La tua avventura inizia con un volo verso l'aeroporto internazionale di Cape Town in Sud Africa. Da lì, dovrai prendere un volo charter o un volo di collegamento verso Saint Helena, dove poi potrai imbarcarti su un traghetto per Tristan da Cunha. Pianifica con anticipo e controlla le disponibilità dei voli charter e dei traghetti.</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Nave Tab -->
+                <div class="tab-pane fade" id="ship" role="tabpanel" aria-labelledby="ship-tab">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8">
+                            <h3>Arrivare con la Nave</h3>
+                            <p>La via principale per raggiungere Tristan da Cunha è tramite nave. I traghetti partono regolarmente da Cape Town e arrivano a Tristan da Cunha in circa una settimana. È fondamentale prenotare il viaggio con largo anticipo, poiché i posti sui traghetti sono limitati e la disponibilità può variare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
         <!-- Main Content -->
         <section class="services-section my-5">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -46,11 +98,13 @@
                         <i class="fa fa-bed"></i> Room
                     </button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button" role="tab" aria-controls="booking" aria-selected="false">
-                        <i class="fa fa-calendar-check-o"></i> Booking
-                    </button>
-                </li>
+                {% if current_user.role != "Client" %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button" role="tab" aria-controls="booking" aria-selected="false">
+                            <i class="fa fa-calendar-check-o"></i> Booking
+                        </button>
+                    </li>
+                {% endif %}
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab" aria-controls="user" aria-selected="false">
                         <i class="fa fa-user"></i> My Profile
@@ -59,69 +113,74 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-                    <img src="{{url_for('static', filename='images/hotello.jpg')}}" alt="Hotel Image" class="tab-image">
-                    <p>L'Oasi del Mare è un incantevole rifugio situato sulla costa, perfetto per chi cerca una vacanza rilassante e rigenerante. Il nostro hotel offre camere eleganti, un servizio 
-                        impeccabile, e una vista mozzafiato sul mare. Con noi, potrai godere di un'esperienza unica, immerso nel comfort e nel lusso.</p>                        
+                    <img src="{{ url_for('static', filename='images/hotello.jpg') }}" alt="Hotel Image" class="tab-image">
+                    <p>L'Oasi del Mare è un incantevole rifugio situato sulla costa, perfetto per chi cerca una vacanza rilassante e rigenerante. 
+                    Il nostro hotel offre camere eleganti, un servizio impeccabile, e una vista mozzafiato sul mare. 
+                    Con noi, potrai godere di un'esperienza unica, immerso nel comfort e nel lusso.</p>                        
                     <div class="row justify-content-center text-center">
                         <div class="col-lg-8"><a class="btn btn-custom" href="/hotel"><i class="fa fa-building"></i> Hotel</a></div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="servizi" role="tabpanel" aria-labelledby="servizi-tab">
-                    <img src="{{url_for('static', filename='images/bar.jpg')}}" alt="Services Image" class="tab-image">
-                    <p>I nostri servizi includono un centro benessere di alto livello, una piscina panoramica, ristoranti gourmet, e un servizio di concierge attento e professionale. Qualunque sia 
-                        la tua esigenza, siamo qui per soddisfarla e rendere il tuo soggiorno indimenticabile.</p>
+                    <img src="{{ url_for('static', filename='images/bar.jpg') }}" alt="Services Image" class="tab-image">
+                    <p>I nostri servizi includono un centro benessere di alto livello, una piscina panoramica, ristoranti gourmet, 
+                    e un servizio di concierge attento e professionale. Qualunque sia la tua esigenza, siamo qui per soddisfarla e rendere il tuo soggiorno indimenticabile.</p>
                     <div class="row justify-content-center text-center">
                         <div class="col-lg-8"><a class="btn btn-custom" href="/service"><i class="fa fa-cogs"></i> Servizi</a></div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="room" role="tabpanel" aria-labelledby="room-tab">
-                    <img src="{{url_for('static', filename='images/camera.jpg')}}" alt="Room Image" class="tab-image">
-                    <p>Le nostre camere sono state progettate per offrire il massimo del comfort e del relax. Ogni stanza è dotata di arredi moderni, biancheria di lusso, e tutte le comodità necessarie 
-                        per sentirsi a casa. Svegliarsi con la vista del mare è un'esperienza che non dimenticherai.</p>
+                    <img src="{{ url_for('static', filename='images/camera.jpg') }}" alt="Room Image" class="tab-image">
+                    <p>Le nostre camere sono state progettate per offrire il massimo del comfort e del relax. 
+                    Ogni stanza è dotata di arredi moderni, biancheria di lusso, e tutte le comodità necessarie per sentirsi a casa. 
+                    Svegliarsi con la vista del mare è un'esperienza che non dimenticherai.</p>
                     <div class="row justify-content-center text-center">
                         <div class="col-lg-8"><a class="btn btn-custom" href="/room"><i class="fa fa-bed"></i> Room</a></div>
                     </div>
                 </div>
+                {% if current_user.role != "Client" %}
                 <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
-                    <img src="{{url_for('static', filename='images/ingresso.jpg')}}" alt="Booking Image" class="tab-image">
-                    <p>Prenotare il tuo soggiorno all'Oasi del Mare è facile e veloce. Utilizza il nostro sistema di prenotazione online per scegliere la tua camera ideale e personalizzare il tuo pacchetto 
-                        di soggiorno. Il nostro staff è sempre disponibile per assisterti in ogni fase della prenotazione.</p>
+                    <img src="{{ url_for('static', filename='images/ingresso.jpg') }}" alt="Booking Image" class="tab-image">
+                    <p>Prenotare il tuo soggiorno all'Oasi del Mare è facile e veloce. Utilizza il nostro sistema di prenotazione online per scegliere la tua camera ideale 
+                    e personalizzare il tuo pacchetto di soggiorno. Il nostro staff è sempre disponibile per assisterti in ogni fase della prenotazione.</p>
                     <div class="row justify-content-center text-center">
                         <div class="col-lg-8"><a class="btn btn-custom" href="/booking"><i class="fa fa-calendar-check-o"></i> Booking</a></div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
-                    <img src="{{url_for('static', filename='images/camera_quattro.jpg')}}" alt="User Profile Image" class="tab-image">
+                    <img src="{{ url_for('static', filename='images/camera_quattro.jpg') }}" alt="User Profile Image" class="tab-image">
                     <p>Benvenuto nella tua area riservata. Qui puoi gestire il tuo profilo, rivedere le tue prenotazioni passate, e accedere a offerte esclusive riservate ai nostri ospiti. 
-                        Personalizza la tua esperienza per rendere ogni soggiorno presso di noi ancora più speciale.</p>
+                    Personalizza la tua esperienza per rendere ogni soggiorno presso di noi ancora più speciale.</p>
                     <div class="row justify-content-center text-center">
                         <div class="col-lg-8"><a class="btn btn-custom" href="{{ url_for('main.user_profile', id = current_user.id) }}"><i class="fa fa-users"></i> My Profile</a></div>
                     </div>
                 </div>
             </div>
         </section>
-
+    
         <!-- Logout -->
         <section class="logout-section text-center animated fadeIn slower my-5">
             <p class="footer">Se hai finito di esplorare per oggi, puoi fare il <a href="/logout">logout</a>.</p>
         </section>     
-
+    
         <!-- Footer -->
         <footer class="animated fadeIn">
             <hr class="bg-light">
             <p>© 2024. Oasi del Mare. Tutti i diritti riservati.</p>
             <div class="social-media">
-                <a href="" target="_blank" class="social-icon"><i class="fa fa-facebook"></i></a>
-                <a href="" target="_blank" class="social-icon"><i class="fa fa-twitter"></i></a>
-                <a href="" target="_blank" class="social-icon"><i class="fa fa-linkedin"></i></a>
-                <a href="" target="_blank" class="social-icon"><i class="fa fa-instagram"></i></a>
-                <a href="" target="_blank" class="social-icon"><i class="fa fa-youtube"></i></a>
+                <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
             </div>
         </footer>
-
+    
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     </div>
+    
 </body>
 </html>

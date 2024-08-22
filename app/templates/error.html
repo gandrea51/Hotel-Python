@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}Errore {{error_code}}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5 text-center error-page">
+    <h1 class="display-4 text-danger animated pulse">Ops! Qualcosa è andato storto.</h1>
+    <p class="lead">{{ error_message }}</p>
+    <hr class="my-4">
+    <a href="/home" class="btn btn-primary btn-lg mt-4">Torna alla Home</a>
+</div>
+{% endblock %}

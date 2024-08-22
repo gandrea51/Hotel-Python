@@ -13,6 +13,24 @@ def inject_user():
         return {'current_user': current_user}
     return {'current_user': None}
 
+'''
+    ERROR
+'''
+@main.app_errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', error_code=404, error_message="La pagina che stai cercando non esiste."), 404
+
+@main.app_errorhandler(500)
+def internal_server_error(e):
+    return render_template('error.html', error_code=500, error_message="Errore interno del server. Per favore riprova più tardi."), 500
+
+@main.app_errorhandler(403)
+def forbidden(e):
+    return render_template('error.html', error_code=403, error_message="Accesso negato. Non hai i permessi necessari per accedere a questa pagina."), 403
+
+'''
+    HOME PAGE
+'''
 @main.route('/')
 def welcome():
     return render_template('welcome.html')
@@ -32,7 +50,6 @@ def home():
 '''
     USER
 '''
-
 @main.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -83,6 +100,8 @@ def logout():
 @login_required
 def user_profile(id):      
     user = db.session.get(User, id)
+    if not user:
+        return render_template('error.html', error_message="L'utente richiesto non è stato trovato.")
     msg = ""
     books = []
 
@@ -110,13 +129,14 @@ def password():
             db.session.commit()
             return redirect(url_for('main.home'))
         else:
-            return "La vecchia password non è corretta", 400
+            return render_template('error.html', error_message="La password attuale è errata. Riprovare.")
 
     return render_template('password.html')
 
 @main.route('/email', methods=['GET', 'POST'])
 def email():
     if request.method == 'POST':
+        old = request.form.get('old')
         new = request.form.get('new')
 
         is_valid, error_message = is_email_valid(new)
@@ -124,9 +144,12 @@ def email():
             flash(error_message, 'danger')
             return redirect(url_for('main.email'))
         
-        current_user.email = new
-        db.session.commit()
-        return redirect(url_for('main.home'))
+        if old == current_user.email:
+            current_user.email = new
+            db.session.commit()
+            return redirect(url_for('main.home'))
+        else: 
+            return render_template('error.html', error_message="L'indirizzo email attuale è errato. Riprovare")
 
     return render_template('email.html')
 
@@ -143,7 +166,6 @@ def phone():
 '''
     HOTEL
 '''
-
 @main.route('/hotel')
 def hotel_index():       
     hotels = Hotel.query.all()
@@ -170,6 +192,8 @@ def hotel_create():
 @login_required
 def hotel_edit(id):
     hotel = Hotel.query.get(id)
+    if not hotel:
+        return render_template('error.html', error_message="L'hotel richiesto non è stato trovato.")
     if request.method == 'POST':
         hotel.name = request.form['name'],
         hotel.address = request.form['address'],
@@ -185,8 +209,8 @@ def hotel_edit(id):
 @login_required
 def hotel_delete(id):
     hotel = Hotel.query.get(id)
-    if hotel is None:
-        return "Hotel non trovato", 404
+    if not hotel:
+        return render_template('error.html', error_message="L'hotel richiesto non è stato trovato.")
     db.session.delete(hotel)
     db.session.commit()
     return redirect(url_for('main.hotel_index'))
@@ -194,7 +218,6 @@ def hotel_delete(id):
 '''
     ROOM
 '''
-
 @main.route('/room')
 def room_index():       
     rooms = Room.query.all()
@@ -205,7 +228,8 @@ def room_index():
 def room_create():
     if request.method == 'POST':
         room = Room(
-            type = request.form['type']
+            type = request.form['type'],
+            description = request.form['description']
         )
         db.session.add(room)
         db.session.commit()        
@@ -217,8 +241,11 @@ def room_create():
 @login_required
 def room_edit(id):
     room = Room.query.get(id)
+    if not room:
+        return render_template('error.html', error_message="La camera richiesta non è stato trovata.")
     if request.method == 'POST':
         room.type = request.form['type']
+        room.description = request.form['description']
         db.session.commit()        
         return redirect(url_for('main.room_index'))
     
@@ -228,8 +255,63 @@ def room_edit(id):
 @login_required
 def room_delete(id):
     room = Room.query.get(id)
-    if room is None:
-        return "Room non trovata", 404
+    if not room:
+        return render_template('error.html', error_message="La camera richiesta non è stato trovata.")
     db.session.delete(room)
     db.session.commit()
     return redirect(url_for('main.room_index'))
+
+'''
+    SERVICE
+'''
+@main.route('/service')
+def service_index():       
+    services = Service.query.all()
+    return render_template('service_index.html', services = services)
+
+@main.route('/service/create', methods=['GET', 'POST'])
+@login_required
+def service_create():
+    if request.method == 'POST':
+        service = Service(
+            name = request.form['name'],
+            description = request.form['description'],
+            price = request.form['price'],
+            duration = request.form['duration'],
+            available = request.form['available']
+        )
+        db.session.add(service)
+        db.session.commit()        
+        return redirect(url_for('main.service_index'))
+    
+    return render_template('service_create.html')
+
+@main.route('/service/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def service_edit(id):
+    service = Service.query.get(id)
+    if not service:
+        return render_template('error.html', error_message="Il servizio richiesto non è stato trovato.")
+    if request.method == 'POST':
+        service.name = request.form['name'],
+        service.description = request.form['description'],
+        service.price = request.form['price'],
+        service.duration = request.form['duration'],
+        service.available = request.form['available']
+        db.session.commit()        
+        return redirect(url_for('main.serivce_index'))
+    
+    return render_template('service.edit.html', service = service)
+
+@main.route('/service/<int:id>/delete', methods=['POST'])
+@login_required
+def service_delete(id):
+    service = Service.query.get(id)
+    if not service:
+        return render_template('error.html', error_message="Il servizio richiesto non è stato trovato.")
+    db.session.delete(service)
+    db.session.commit()
+    return redirect(url_for('main.service_index'))
+'''
+    BOOKING
+'''

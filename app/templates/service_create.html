@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}Aggiungi un Servizio{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hotel_create.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Titolo della pagina -->
+    <div class="row mb-4 text-center">
+        <div class="col-md-12">
+            <h1 class="display-4">Aggiungi un Nuovo Servizio</h1>
+        </div>
+    </div>
+    <hr>
+
+    <form action="/service/create" method="POST" class="custom-form">       
+        <div class="form-group mb-4">
+            <label for="name">Name</label>
+            <input required id="name" class="form-control" name="name" type="text" placeholder="Inserisci il nome del Servizio">
+            <small class="form-text">Service's Name</small>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" name="description" rows="4" placeholder="Inserisci una descrizione del Servizio"></textarea>
+            <small class="form-text">Service's Description</small>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input required id="price" class="form-control" name="price" type="number" step="0.01" min="0" max="999.99" placeholder="Inserisci il prezzo del Servizio">
+                    <small class="form-text">Service's Price</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input required id="duration" class="form-control" name="duration" type="text" placeholder="Inserisci la durata del Servizio">
+                    <small class="form-text">Service's Duration</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="available">Available</label>
+                    <select required id="available" class="form-select" name="available">
+                        <option selected value="Si">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <small class="form-text">Service's Available</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Aggiungi Servizio</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

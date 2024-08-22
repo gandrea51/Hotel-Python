@@ -28,6 +28,7 @@ class Service (db.Model):
 class Room (db.Model):
     id = db.Column(db.Integer, primary_key = True)
     type = db.Column(db.String(100))
+    description = db.Column(db.Text)
 
 class Booking (db.Model):
     id = db.Column(db.Integer, primary_key = True)

@@ -11,6 +11,10 @@
         <div class="card-body">
             <form method="post" action="/email">
                 <div class="mb-3">
+                    <label for="old" class="form-label">Old Email</label>
+                    <input required id="old" type="email" class="form-control" name="old">
+                </div>
+                <div class="mb-3">
                     <label for="new" class="form-label">New Email</label>
                     <input id="new" type="email" class="form-control" name="new" required>
                 </div>
